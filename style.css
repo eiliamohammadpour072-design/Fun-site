@@ -6,6 +6,7 @@ body {
     align-items: center;
     height: 100vh;
     transition: background 0.5s;
+    overflow: hidden;
 }
 
 .container {
@@ -14,7 +15,7 @@ body {
     padding: 40px;
     border-radius: 20px;
     backdrop-filter: blur(10px);
-    color: rgb(29, 29, 29);
+    color: rgb(0, 0, 0);
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
