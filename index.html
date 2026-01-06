@@ -2,42 +2,37 @@
 <html lang="fa">
 <head>
     <meta charset="UTF-8">
-    <title>سایت فان من</title>
+    <title>مرد واقعی یا تسلا؟ 😏</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="container">
-        <h1>😄 my fun site </h1>
-        <p>catch me!</p>
+<div class="container">
+    <h1>کدومو انتخاب می‌کنی؟</h1>
+    <p>بی ام وه یا تسلا؟ 😎</p>
 
-        <button id="btn" onmouseover="run()" onclick="clickBtn()">
-            catch me if you can! 😜
-        </button>
-
-        <p id="text"></p>
+    <div class="choices">
+        <img src="bmw.jpg" alt="BMW" id="bmw" onclick="choose('bmw')">
+        <img src="tesla.jpg" alt="Tesla" id="tesla" onclick="choose('tesla')">
     </div>
 
-    <script>
-        let count = 0;
+    <p id="result"></p>
+</div>
 
-        function run() {
-            const btn = document.getElementById("btn");
-            const x = Math.random() * 300 - 150;
-            const y = Math.random() * 300 - 150;
+<script>
+function choose(car) {
+    const body = document.body;
+    const result = document.getElementById('result');
 
-            btn.style.transform = `translate(${x}px, ${y}px)`;
-        }
-
-        function clickBtn() {
-            count++;
-            document.getElementById("text").innerText =
-                "got it! 😎 succesfull attemp: " + count;
-
-            document.body.style.backgroundColor =
-                "#" + Math.floor(Math.random() * 16777215).toString(16);
-        }
-    </script>
+    if(car === 'bmw') {
+        result.innerText = "🎉 تبریک! شما یک مرد واقعی هستید!";
+        body.style.background = "linear-gradient(135deg, #667eea, #764ba2)";
+    } else if(car === 'tesla') {
+        result.innerText = "😏 میدونستم...";
+        body.style.background = "url('pride.jpg') no-repeat center center/cover";
+    }
+}
+</script>
 
 </body>
 </html>
