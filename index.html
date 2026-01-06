@@ -20,16 +20,53 @@
 </div>
 
 <script>
+let firstChoice = null; // ذخیره اولین انتخاب کاربر
+let intervalId = null;  // برای گرادیان متحرک BMW
+
 function choose(car) {
     const body = document.body;
     const result = document.getElementById('result');
 
-    if(car === 'bmw') {
-        result.innerText = "🎉 تبریک! شما یک مرد واقعی هستید!";
-        body.style.background = "linear-gradient(135deg, #667eea, #764ba2)";
-    } else if(car === 'tesla') {
-        result.innerText = "😏 میدونستم...";
-        body.style.background = "url('pride.jpg') no-repeat center center/cover";
+    if(firstChoice === null) {
+        // اولین انتخاب
+        firstChoice = car;
+
+        if(car === 'bmw') {
+            result.innerText = "🎉 تبریک! شما یک مرد واقعی هستید!";
+            startBMWBackground();
+        } else if(car === 'tesla') {
+            result.innerText = "😏 میدونستم...";
+            stopBMWBackground();
+            body.style.background = "url('pride.jpg') no-repeat center center/cover";
+        }
+        return;
+    }
+
+    // اگر کاربر بخواد انتخاب دوم رو بزنه
+    if(firstChoice === 'bmw' && car === 'tesla') {
+        result.innerText = "😅 این کار یک مرد واقعی نیست!";
+    } else if(firstChoice === 'tesla' && car === 'bmw') {
+        result.innerText = "😏 دیگه لو رفتی!";
+    }
+}
+
+// توابع گرادیان متحرک BMW
+function startBMWBackground() {
+    const body = document.body;
+    let hue = 0;
+
+    stopBMWBackground(); // اطمینان از اینکه چند بار شروع نشه
+
+    intervalId = setInterval(() => {
+        hue = (hue + 1) % 360;
+        body.style.background = `linear-gradient(135deg, hsl(${hue}, 70%, 50%), hsl(${(hue+60)%360}, 70%, 50%))`;
+    }, 30);
+}
+
+function stopBMWBackground() {
+    if(intervalId) {
+        clearInterval(intervalId);
+        intervalId = null;
     }
 }
 </script>
